@@ -1,0 +1,71 @@
+<div align="center">
+
+# ☁️ Cumulus
+
+**A native AWS control room for your desktop.**
+Monitor and manage ECS, Lambda, CloudWatch, S3 and RDS — without ever opening the AWS console.
+
+</div>
+
+---
+
+Cumulus is a Tauri 2 + React desktop app with a thick native-glass macOS
+aesthetic. It shells out to your existing `aws` CLI, so it inherits your
+credential chain (including SSO refresh) and shows your real infrastructure the
+moment you launch it.
+
+## What it does
+
+| Section | What you get |
+| --- | --- |
+| **Overview** | Whole-estate health: ECS service health, alarms firing, Lambda/S3/RDS counts. |
+| **Services** (ECS) | Clusters & services with running/desired tasks, deployments and events. **Restart** (force new deployment) and **Scale** (set desired count) inline. Live CPU/memory sparklines. |
+| **Functions** (Lambda) | Every function with runtime/memory/size. **Test-invoke** with a JSON payload and see the response + log tail. 24h invocation & error charts. |
+| **Logs** | A proper live CloudWatch log tail — pick a group, choose a time range, add a filter pattern, and watch it stream with severity colouring. |
+| **Alarms** | Every CloudWatch alarm, in-alarm first, with state and reason. |
+| **Storage** (S3) | Browse buckets and objects with breadcrumb navigation. |
+| **Database** (RDS) | Instance status, endpoint, and live CPU / connections / memory / storage. |
+
+## Requirements
+
+- macOS, the [AWS CLI v2](https://docs.aws.amazon.com/cli/) configured (`~/.aws`)
+- [Rust](https://rustup.rs) + [Bun](https://bun.sh)
+
+## Run it
+
+```sh
+bun install
+bun run app          # dev, with hot reload
+```
+
+Pick your profile and region in **Settings**. SSO profile? Hit **Sign in with
+SSO** and Cumulus runs `aws sso login` for you.
+
+## Install to /Applications
+
+```sh
+bun run install-app  # release build → /Applications/Cumulus.app
+```
+
+## How it's wired
+
+- `src-tauri/src/awscli.rs` — the async `aws` CLI runner (region/profile/JSON).
+- `src-tauri/src/commands.rs` — one Tauri command per operation.
+- `src-tauri/src/models.rs` ⇄ `src/lib/types.ts` — matching data shapes.
+- `src/views/*` — one screen each, loading via the `useAsync` hook.
+
+## Security
+
+Cumulus is a local desktop tool. It has no backend, no telemetry, and stores no
+credentials — it shells out to your own `aws` CLI and inherits whatever identity
+and IAM permissions your active profile has. The only network traffic is the AWS
+API calls the CLI already makes on your behalf.
+
+It can perform **write actions** — restarting/scaling ECS services and invoking
+Lambda functions — so run it with a profile whose permissions you're comfortable
+exercising. There is nothing account-specific baked into this repo; everything
+(accounts, clusters, functions, buckets) is discovered at runtime.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

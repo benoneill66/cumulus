@@ -1,0 +1,33 @@
+{
+  "name": "cumulus",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Cumulus — a native AWS control room. Monitor and manage your AWS estate without the console.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "app": "tauri dev",
+    "app:build": "tauri build",
+    "install-app": "bun run tauri build --bundles app && rm -rf /Applications/Cumulus.app && cp -R src-tauri/target/release/bundle/macos/Cumulus.app /Applications/"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-opener": "^2",
+    "@tauri-apps/plugin-shell": "^2.3.5",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "@tauri-apps/cli": "^2",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "tailwindcss": "^4.2.1",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4"
+  }
+}
