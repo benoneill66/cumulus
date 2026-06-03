@@ -5,6 +5,10 @@
 **A native AWS control room for your desktop.**
 Monitor and manage ECS, Lambda, CloudWatch, S3 and RDS — without ever opening the AWS console.
 
+<br/>
+
+<img src="docs/screenshots/overview.png" alt="Cumulus Overview" width="860" />
+
 </div>
 
 ---
@@ -13,6 +17,26 @@ Cumulus is a Tauri 2 + React desktop app with a thick native-glass macOS
 aesthetic. It shells out to your existing `aws` CLI, so it inherits your
 credential chain (including SSO refresh) and shows your real infrastructure the
 moment you launch it.
+
+> _Screenshots below use built-in demo data — running Cumulus without AWS
+> credentials shows a fictional account so you can try the UI instantly._
+
+## Screenshots
+
+<table>
+  <tr>
+    <td width="50%"><b>Services — restart, scale &amp; live metrics</b><br/><img src="docs/screenshots/services-detail.png" alt="ECS service detail"/></td>
+    <td width="50%"><b>Lambda — test-invoke &amp; watch</b><br/><img src="docs/screenshots/lambda-detail.png" alt="Lambda invoke"/></td>
+  </tr>
+  <tr>
+    <td><b>Logs — live CloudWatch tail</b><br/><img src="docs/screenshots/logs.png" alt="Live logs"/></td>
+    <td><b>Database — RDS live metrics</b><br/><img src="docs/screenshots/database.png" alt="RDS metrics"/></td>
+  </tr>
+  <tr>
+    <td><b>Alarms</b><br/><img src="docs/screenshots/alarms.png" alt="CloudWatch alarms"/></td>
+    <td><b>Storage — S3 browser</b><br/><img src="docs/screenshots/storage.png" alt="S3 buckets"/></td>
+  </tr>
+</table>
 
 ## What it does
 
@@ -36,6 +60,7 @@ moment you launch it.
 ```sh
 bun install
 bun run app          # dev, with hot reload
+bun run dev          # browser-only preview with demo data (no AWS needed)
 ```
 
 Pick your profile and region in **Settings**. SSO profile? Hit **Sign in with
