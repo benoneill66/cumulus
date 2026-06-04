@@ -5,6 +5,13 @@
 **A native AWS control room for your desktop.**
 Monitor and manage ECS, Lambda, CloudWatch, S3 and RDS — without ever opening the AWS console.
 
+[![Latest release](https://img.shields.io/github/v/release/benoneill66/cumulus?color=ff9d2f&label=release)](https://github.com/benoneill66/cumulus/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/benoneill66/cumulus/total?color=34e2a0&label=downloads)](https://github.com/benoneill66/cumulus/releases)
+[![License: MIT](https://img.shields.io/badge/license-MIT-7c9cff)](LICENSE)
+![Platform](https://img.shields.io/badge/macOS-Apple%20Silicon-111)
+
+### [⬇&nbsp; Download for macOS](https://github.com/benoneill66/cumulus/releases/latest)
+
 <br/>
 
 <img src="docs/screenshots/overview.png" alt="Cumulus Overview" width="860" />
@@ -50,10 +57,20 @@ moment you launch it.
 | **Storage** (S3) | Browse buckets and objects with breadcrumb navigation. |
 | **Database** (RDS) | Instance status, endpoint, and live CPU / connections / memory / storage. |
 
+## Download
+
+Grab the latest `.app` from the **[Releases page](https://github.com/benoneill66/cumulus/releases/latest)** (Apple Silicon). It's unsigned, so clear the quarantine flag once after moving it to `/Applications`:
+
+```sh
+xattr -dr com.apple.quarantine /Applications/Cumulus.app
+```
+
+Prefer to build from source? See below.
+
 ## Requirements
 
 - macOS, the [AWS CLI v2](https://docs.aws.amazon.com/cli/) configured (`~/.aws`)
-- [Rust](https://rustup.rs) + [Bun](https://bun.sh)
+- [Rust](https://rustup.rs) + [Bun](https://bun.sh) _(only to build from source)_
 
 ## Run it
 
